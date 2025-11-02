@@ -21,6 +21,7 @@
     "/challenges",
     "/scoreboard",
     "/teams",
+    "/rules",
     "/team",
     "/settings",
   ];

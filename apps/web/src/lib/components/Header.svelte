@@ -50,6 +50,9 @@
         <li>
           <a href="/teams" class={isActive("/teams")}>Teams</a>
         </li>
+        <li>
+          <a href="/rules" class={isActive("/rules")}>Rules</a>
+        </li>
         {#if IS_STATIC_EXPORT}
           <li>
             <a href="/stats" class={isActive("/stats")}>Stats</a>
@@ -84,6 +87,9 @@
       </li>
       <li>
         <a href="/teams" class={isActive("/teams")}>Teams</a>
+      </li>
+      <li>
+        <a href="/rules" class={isActive("/rules")}>Rules</a>
       </li>
       {#if IS_STATIC_EXPORT}
         <li>
