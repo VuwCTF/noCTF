@@ -16,6 +16,7 @@ from noctfcli.commands.validate import validate
 from noctfcli.config import Config
 from noctfcli.exceptions import ConfigurationError
 from noctfcli.preprocessor import PreprocessorBase
+from noctfcli.vuwctfpreprocessor import VuwctfPreprocessor
 
 
 def build_cli(Preprocessor: Optional[Type[PreprocessorBase]] = None):
@@ -54,7 +55,7 @@ def build_cli(Preprocessor: Optional[Type[PreprocessorBase]] = None):
 
 
 def main() -> None:
-    cli = build_cli()
+    cli = build_cli(VuwctfPreprocessor)
     cli()
 
 
