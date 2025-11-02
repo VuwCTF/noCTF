@@ -39,7 +39,11 @@
             - For the Secondary division: all participants must have been enrolled in a New Zealand high school (or below) in 2025.
           </li>
           <li class="text-base-content/70 mt-3">
-            - For the Tertiary division: all participants must have been enrolled in a New Zealand tertiary institution (or below) in 2025.
+            - For the Tertiary division: all participants must have been enrolled in a New Zealand tertiary institution (or equivalent) in 2025.
+            Tertiary division teams may contain members who are eligible for the Secondary division.
+          </li>
+          <li class="text-base-content/70 mt-3">
+            - Have no members who are, or are closely related to, the VuwCTF board or other event organisers who had access to challenges in advance.
           </li>
         </ul>
       </div>
