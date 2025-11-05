@@ -7,6 +7,12 @@
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare",
 	},
+  "routes": [
+    {
+      "pattern": "2025.vuwctf.com",
+      "custom_domain": true
+    }
+  ],
   "compatibility_flags": [
     "nodejs_compat"
   ]
