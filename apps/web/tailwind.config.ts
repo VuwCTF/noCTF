@@ -34,7 +34,7 @@ export default {
     themes: [
       {
         light: {
-          ...daisyuiThemes["light"],
+          ...daisyuiThemes["cupcake"],
           "--base-400": "#8a8b90",
           "--base-500": "#3a3b40",
           primary: "#706ce4",
