@@ -30,7 +30,7 @@ USER 1000
 CMD ["node", "dist/www.cjs"]
 
 FROM base AS build_web
-RUN VITE_API_BASE_URL="api.2025.vuwctf.com" pnpm --filter '@noctf/web' build
+RUN VITE_API_BASE_URL="https://api.2025.vuwctf.com:8000" pnpm --filter '@noctf/web' build
 
 FROM joseluisq/static-web-server:2-alpine AS out_web
 COPY --from=build_web /build/apps/web/docker-init /init
