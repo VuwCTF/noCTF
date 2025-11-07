@@ -54,7 +54,7 @@
 </script>
 
 <svelte:head>
-  <title>{configState.siteConfig?.name || "noCTF"}</title>
+  <title>{configState.siteConfig?.name || "VuwCTF 2025"}</title>
 </svelte:head>
 
 <div class="flex flex-col min-h-screen h-auto">

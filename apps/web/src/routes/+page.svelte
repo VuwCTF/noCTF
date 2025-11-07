@@ -4,6 +4,6 @@
 
 <div class="h-80 flex justify-center items-end">
   <div class="center text-8xl font-mono font-extrabold">
-    Welcome to {configState.siteConfig?.name || "noCTF"}
+    Welcome to {configState.siteConfig?.name || "VuwCTF 2025"}
   </div>
 </div>
