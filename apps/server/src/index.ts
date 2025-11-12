@@ -81,7 +81,7 @@ server.register(async () => {
   server.container = createContainer();
   const keyService = new KeyService(TOKEN_SECRET);
 
-  server.container.register({
+  await server.container.register({
     logger: asValue(server.log),
     redisClientFactory: asFunction(
       ({ logger }) => new RedisClientFactory(REDIS_URL, logger),
@@ -120,7 +120,7 @@ server.register(async () => {
     statsService: asClass(StatsService).singleton(),
     userService: asClass(UserService).singleton(),
     lockService: asClass(LockService).singleton(),
-  });
+  })
   void server.container.cradle.metricsClient.init();
   void server.container.cradle.notificationService.init();
 });

@@ -29,6 +29,14 @@ WORKDIR "/build/apps/server"
 USER 1000
 CMD ["node", "dist/www.cjs"]
 
+FROM node:$NODE_VERSION AS out_worker
+COPY --from=build_server /deploy/server /build/apps/worker
+ENV HOST=::
+ENV ENABLE_SWAGGER=0
+WORKDIR "/build/apps/worker"
+USER 1000
+CMD ["node", "dist/worker.cjs"]
+
 FROM base AS build_web
 RUN VITE_API_BASE_URL="https://api.2025.vuwctf.com:8000" pnpm --filter '@noctf/web' build
 

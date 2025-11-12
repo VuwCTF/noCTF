@@ -1,5 +1,23 @@
 # TODO: make this auto-migrate
 services:
+  worker:
+    image: ghcr.io/vuwctf/noctf/worker
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: out_worker
+    depends_on:
+      - redis
+      - nats
+      - postgres
+    environment:
+      NATS_URL: "nats://nats:4222"
+      REDIS_URL: "redis://redis:6379"
+      POSTGRES_URL: "postgres://postgres:noctf@postgres/noctf"
+      HOST: "::"
+      ENABLE_SWAGGER: 0
+      ALLOWED_ORIGINS: "example.com,localhost"
+      TOKEN_SECRET:
   server:
     image: ghcr.io/vuwctf/noctf/server
     build:
@@ -18,12 +36,15 @@ services:
       ENABLE_SWAGGER: 0
       ALLOWED_ORIGINS: "example.com,localhost"
       TOKEN_SECRET:
-  web:
-    image: ghcr.io/vuwctf/noctf/web
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: out_web
+  # web:
+  #   image: ghcr.io/vuwctf/noctf/web
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: out_web
+  #   ports:
+  #     - "80:80"
+  #     - "5173:5173"
   redis:
     image: valkey/valkey:8-alpine
   nats:
