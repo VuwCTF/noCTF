@@ -81,8 +81,7 @@
   </div>
 
   <div style="grid-template-columns: 40% 60%" class="m-auto center text-m sponsor-grid silver" >
-    <!-- <a href="https://carapace.nz" style="grid-column-start: 1; grid-row-start: 1 / 1; padding: 20px; justify-self: center"> --> <img src="/sponsors/carapace.png" alt="Carapace logo" 
-      style="grid-column-start: 1; grid-row-start: 1 / 1; padding: 20px; padding-bottom: 0; justify-self: center" /><!-- </a> -->
+    <a href="https://carapace.nz"> <img src="/sponsors/carapace.png" alt="Carapace logo" /></a>
     <div style="grid-column-start: 1; grid-row-start: 2; width: fit-content" class="m-auto mt-3"><SponsorChip tier="Silver" /></div>
     <div style="grid-column-start: 2; grid-row: 1 / 2; padding: 20px">Carapace is a specialist security testing consultancy. We recognise the need to support and foster the next generation of amazing talent in this sector, so we're proud to sponsor VUWCTF 2025.</div>
   </div>
@@ -101,6 +100,11 @@
   
   .silver img {
     max-height: 11rem;
+    grid-column-start: 1;
+    grid-row-start: 1 / 1;
+    padding: 20px;
+    padding-bottom: 0;
+    justify-self: center;
   }
 
   .silver {
@@ -131,6 +135,9 @@
     }
 
     .silver {
+      & img {
+        padding-bottom: 15px;
+      }
       & .mt-3 {
         margin-top: 0;
       }
