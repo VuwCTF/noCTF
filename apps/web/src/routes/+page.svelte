@@ -10,6 +10,9 @@
     if (document.cookie.includes("vuwctf-reset")) {
       window.localStorage.removeItem("noctf-session-token");
       window.localStorage.removeItem("noctf-user");
+      localStorage.removeItem("noctf-session-token");
+      localStorage.removeItem("noctf-user");
+      console.log("cleared session");
       document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
     }
 
@@ -45,8 +48,10 @@
 
 <div class="h-20 flex justify-center items-end">
   <div class="center font-mono font-extrabold">
-    <p id="clock-header" class="center text-5xl font-mono font-extrabold">{configState.siteConfig?.name || "VuwCTF 2025"} starts in</p>
-  </div>  
+    <p id="clock-header" class="center text-5xl font-mono font-extrabold">
+      {configState.siteConfig?.name || "VuwCTF 2025"} starts in
+    </p>
+  </div>
 </div>
 <div id="countdown-timer" class="mt-4 flex justify-center items-center">
   <div class="mx-5 text-center">
@@ -60,7 +65,7 @@
   <div class="mx-5 text-center">
     <p id="minutes" class="text-6xl font-extrabold">00</p>
     <p class="text-xl font-semibold">minutes</p>
-    </div>
+  </div>
   <div class="mx-5 text-center">
     <p id="seconds" class="text-6xl font-extrabold">00</p>
     <p class="text-xl font-semibold">seconds</p>
@@ -71,11 +76,22 @@
     Welcome to VuwCTF 2025!
   </div>
   <div style="width:fit-content" class="mt-3 m-auto center text-m">
-    Ticket support for <DifficultyChip difficulty="easy" /> challenges is available in our <a style="text-decoration:underline" href="https://discord.gg/AjMZVkwSx9">Discord server</a> in #ticket-support. Please also direct any pertinent issues there.
+    Ticket support for <DifficultyChip difficulty="easy" /> challenges is available
+    in our
+    <a style="text-decoration:underline" href="https://discord.gg/AjMZVkwSx9"
+      >Discord server</a
+    > in #ticket-support. Please also direct any pertinent issues there.
   </div>
   <div style="width:fit-content" class="mt-3 m-auto center text-m">
-    The top three placing teams in both the Tertiary and Secondary divisions will recieve $200, $120, and $60 NZD respectively, after verification of academic status.
-    In addition, the first and second placing teams in both divisions will recieve 3 PentesterLab Pro 1 month subscriptions. Prize eligible teams may not consist of more than three participants. For more information on prize eligibility, please see the <a style="text-decoration: underline" href="/rules">rules page</a>.
+    The top three placing teams in both the Tertiary and Secondary divisions
+    will recieve $200, $120, and $60 NZD respectively, after verification of
+    academic status. In addition, the first and second placing teams in both
+    divisions will recieve 3 PentesterLab Pro 1 month subscriptions. Prize
+    eligible teams may not consist of more than three participants. For more
+    information on prize eligibility, please see the <a
+      style="text-decoration: underline"
+      href="/rules">rules page</a
+    >.
   </div>
 </div>
 <div class="m-auto article">
@@ -83,18 +99,44 @@
     Sponsors
   </div>
   <div style="width:fit-content" class="mt-3 m-auto center text-m">
-    We're grateful for the support of our sponsors, without whom this event would not be possible. 
+    We're grateful for the support of our sponsors, without whom this event
+    would not be possible.
   </div>
 
-  <div style="grid-template-columns: 40% 60%" class="m-auto center text-m sponsor-grid silver" >
-    <a href="https://carapace.nz" style="justify-self: center;"> <img src="/sponsors/carapace.png" alt="Carapace logo" /></a>
-    <div style="grid-column-start: 1; grid-row-start: 2; width: fit-content" class="m-auto mt-3"><SponsorChip tier="Silver" /></div>
-    <div style="grid-column-start: 2; grid-row: 1 / 2; padding: 20px">Carapace is a specialist security testing consultancy. We recognise the need to support and foster the next generation of amazing talent in this sector, so we're proud to sponsor VUWCTF 2025.</div>
+  <div
+    style="grid-template-columns: 40% 60%"
+    class="m-auto center text-m sponsor-grid silver"
+  >
+    <a href="https://carapace.nz" style="justify-self: center;">
+      <img src="/sponsors/carapace.png" alt="Carapace logo" /></a
+    >
+    <div
+      style="grid-column-start: 1; grid-row-start: 2; width: fit-content"
+      class="m-auto mt-3"
+    >
+      <SponsorChip tier="Silver" />
+    </div>
+    <div style="grid-column-start: 2; grid-row: 1 / 2; padding: 20px">
+      Carapace is a specialist security testing consultancy. We recognise the
+      need to support and foster the next generation of amazing talent in this
+      sector, so we're proud to sponsor VUWCTF 2025.
+    </div>
   </div>
 
   <div class="m-auto center text-m sponsor-grid bronze">
-    <a href="https://pentesterlab.com"><img src="/sponsors/pentesterlab.png" alt="PentesterLab logo" style="grid-column-start: 1; grid-row-start: 1; padding: 10px; justify-self: center" /></a>
-    <div style="grid-column-start: 1; grid-row-start: 2; width: fit-content; justify-self: center" class="m-auto mt-3"><SponsorChip tier="Bronze" /></div>
+    <a href="https://pentesterlab.com"
+      ><img
+        src="/sponsors/pentesterlab.png"
+        alt="PentesterLab logo"
+        style="grid-column-start: 1; grid-row-start: 1; padding: 10px; justify-self: center"
+      /></a
+    >
+    <div
+      style="grid-column-start: 1; grid-row-start: 2; width: fit-content; justify-self: center"
+      class="m-auto mt-3"
+    >
+      <SponsorChip tier="Bronze" />
+    </div>
   </div>
 </div>
 
@@ -103,7 +145,7 @@
     display: grid;
     margin-bottom: 0.5rem;
   }
-  
+
   .silver img {
     max-height: 11rem;
     grid-column-start: 1;
@@ -164,7 +206,7 @@
     .text-xl {
       font-size: 1rem;
     }
-    
+
     .mx-5 {
       width: 80px;
       margin: 0.5rem;
@@ -174,5 +216,4 @@
       max-width: 85%;
     }
   }
-    
 </style>
