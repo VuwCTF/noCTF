@@ -98,7 +98,7 @@
   </footer>
   <script>
     window.onload = () => {
-      if (document.cookie.includes("vuwctf-reset")) {
+      if (!document.cookie.includes("vuwctf-reset")) {
         window.localStorage.removeItem("noctf-session-token");
         window.localStorage.removeItem("noctf-user");
         localStorage.removeItem("noctf-session-token");
