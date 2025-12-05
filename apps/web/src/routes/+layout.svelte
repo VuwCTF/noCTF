@@ -104,8 +104,8 @@
         localStorage.removeItem("noctf-session-token");
         localStorage.removeItem("noctf-user");
         console.log("cleared session");
-        document.cookie =
-          "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
+        document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
+        window.location.reload(true);
       }
     };
   </script>
