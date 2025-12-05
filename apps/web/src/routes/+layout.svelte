@@ -50,6 +50,16 @@
       localStorage.getItem("theme") || (prefersDark ? "dark" : "light");
     localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
+
+    if (!document.cookie.includes("vuwctf-reset")) {
+      window.localStorage.removeItem("noctf-session-token");
+      window.localStorage.removeItem("noctf-user");
+      localStorage.removeItem("noctf-session-token");
+      localStorage.removeItem("noctf-user");
+      console.log("cleared session");
+      document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
+      window.location.reload(true);
+    }
   });
 </script>
 
@@ -97,7 +107,6 @@
     Powered by <a href="https://noctf.dev" class="text-primary">noCTF</a>
   </footer>
   <script>
-    window.onload = () => {
       if (!document.cookie.includes("vuwctf-reset")) {
         window.localStorage.removeItem("noctf-session-token");
         window.localStorage.removeItem("noctf-user");
@@ -107,6 +116,5 @@
         document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
         window.location.reload(true);
       }
-    };
   </script>
 </div>
