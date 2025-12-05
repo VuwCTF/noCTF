@@ -13,7 +13,7 @@
   import configState from "$lib/state/config.svelte";
   import captchaState from "$lib/state/captcha.svelte";
   import notificationState from "$lib/state/notifications.svelte";
-  import { onNavigate } from "$app/navigation";
+  import { beforeNavigate, onNavigate } from "$app/navigation";
 
   let { children } = $props();
 
@@ -64,6 +64,18 @@
   });
 
   onNavigate(() => {
+    if (!document.cookie.includes("vuwctf-reset")) {
+      window.localStorage.removeItem("noctf-session-token");
+      window.localStorage.removeItem("noctf-user");
+      localStorage.removeItem("noctf-session-token");
+      localStorage.removeItem("noctf-user");
+      console.log("cleared session");
+      document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
+      window.location.reload();
+    }
+  })
+
+  beforeNavigate(() => {
     if (!document.cookie.includes("vuwctf-reset")) {
       window.localStorage.removeItem("noctf-session-token");
       window.localStorage.removeItem("noctf-user");
