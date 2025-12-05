@@ -7,15 +7,6 @@
     const startDate = new Date(1764968400000).getTime();
     const endDate = new Date(1765080000000).getTime();
 
-    if (document.cookie.includes("vuwctf-reset")) {
-      window.localStorage.removeItem("noctf-session-token");
-      window.localStorage.removeItem("noctf-user");
-      localStorage.removeItem("noctf-session-token");
-      localStorage.removeItem("noctf-user");
-      console.log("cleared session");
-      document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
-    }
-
     const updateCountdown = () => {
       const now = new Date().getTime();
       let distance = startDate - now;

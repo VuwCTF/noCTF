@@ -57,6 +57,17 @@
   <title>{configState.siteConfig?.name || "VuwCTF 2025"}</title>
 </svelte:head>
 
+<script>
+  if (document.cookie.includes("vuwctf-reset")) {
+    window.localStorage.removeItem("noctf-session-token");
+    window.localStorage.removeItem("noctf-user");
+    localStorage.removeItem("noctf-session-token");
+    localStorage.removeItem("noctf-user");
+    console.log("cleared session");
+    document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
+  }
+</script>
+
 <div class="flex flex-col min-h-screen h-auto">
   {#if page.url.pathname.startsWith("/admin")}
     <AdminHeader />
