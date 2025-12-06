@@ -84,6 +84,9 @@
       href="/rules">rules page</a
     >.
   </div>
+  <div style="width:fit-content" class="mt-3 m-auto center text-m">
+    We'd also like to thank the DownUnderCTF / noCTF team for their support and for their software. Without their work this CTF would look a lot worse and would have drained a lot more of our sanity.
+  </div>
 </div>
 <div class="m-auto article">
   <div style="width:fit-content" class="mt-10 m-auto center text-2xl font-bold">
