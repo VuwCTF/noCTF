@@ -2,45 +2,12 @@
   import DifficultyChip from "$lib/components/challenges/DifficultyChip.svelte";
   import SponsorChip from "$lib/components/SponsorChip.svelte";
   import configState from "$lib/state/config.svelte";
-  import { onMount } from "svelte";
-  onMount(() => {
-    const startDate = new Date(1764968400000).getTime();
-    const endDate = new Date(1765080000000).getTime();
-
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      let distance = startDate - now;
-
-      if (distance < 0) {
-        if (now >= endDate) {
-          document.getElementById("clock-header")!.innerHTML = (configState.siteConfig?.name || "VuwCTF 2025") + " has ended";
-          clearInterval(interval);
-          return;
-        }
-        distance = endDate - now;
-        document.getElementById("clock-header")!.innerHTML = (configState.siteConfig?.name || "VuwCTF 2025") + " ends in";
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days")!.innerText = String(days).padStart(2, '0');
-      document.getElementById("hours")!.innerText = String(hours).padStart(2, '0');
-      document.getElementById("minutes")!.innerText = String(minutes).padStart(2, '0');
-      document.getElementById("seconds")!.innerText = String(seconds).padStart(2, '0');
-    };
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-  });
 </script>
 
 <div class="h-20 flex justify-center items-end">
   <div class="center font-mono font-extrabold">
     <p id="clock-header" class="center text-5xl font-mono font-extrabold">
-      {configState.siteConfig?.name || "VuwCTF 2025"} starts in
+      {configState.siteConfig?.name || "VuwCTF 2025"} has ended
     </p>
   </div>
 </div>
