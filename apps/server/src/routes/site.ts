@@ -1,65 +1,43 @@
 import { SetupConfig } from "@noctf/api/config";
-import { GetAnnouncementsQuery } from "@noctf/api/query";
 import {
-  GetAnnouncementsResponse,
-  GetSiteConfigResponse,
-} from "@noctf/api/responses";
+  GetAnnouncements,
+  GetHealthz,
+  GetSiteConfig,
+} from "@noctf/api/contract/site";
 import { ServiceCradle } from "@noctf/server-core";
 import { AnnouncementService } from "@noctf/server-core/services/announcement";
 import { GetRouteUserIPKey } from "@noctf/server-core/util/limit_keys";
-import { Type } from "@sinclair/typebox";
 import { FastifyInstance } from "fastify";
+import { route } from "@noctf/server-core/util/route";
 
 export async function routes(fastify: FastifyInstance) {
   const { configService, announcementService, policyService } = fastify
     .container.cradle as ServiceCradle;
 
-  fastify.get<{ Reply: GetSiteConfigResponse }>(
-    "/site/config",
-    {
-      schema: {
-        tags: ["site"],
-        security: [{ bearer: [] }],
-        response: {
-          200: GetSiteConfigResponse,
-        },
-      },
-    },
-    async () => {
-      return {
-        data: (await configService.get(SetupConfig)).value,
-      };
-    },
-  );
+  route(fastify, GetSiteConfig, {}, async () => {
+    return {
+      data: (await configService.get(SetupConfig)).value,
+    };
+  });
 
-  fastify.get<{
-    Reply: GetAnnouncementsResponse;
-    Querystring: GetAnnouncementsQuery;
-  }>(
-    "/announcements",
+  route(
+    fastify,
+    GetAnnouncements,
     {
-      schema: {
-        tags: ["site"],
-        security: [{ bearer: [] }],
-        auth: {
-          policy: ["announcement.get"],
-        },
-        response: {
-          200: GetAnnouncementsResponse,
-        },
-        rateLimit: (r) => [
-          {
-            key: GetRouteUserIPKey(r),
-            limit: r.user ? 30 : 90,
-            windowSeconds: 60,
-          },
-        ],
-        querystring: GetAnnouncementsQuery,
+      auth: {
+        policy: ["announcement.get"],
       },
+      rateLimit: (r) => [
+        {
+          key: GetRouteUserIPKey(r),
+          limit: r.user ? 30 : 90,
+          windowSeconds: 60,
+        },
+      ],
     },
     async (request) => {
       const visible_to: string[] = [];
-      if (!request.routeOptions.schema?.auth?.require) {
+      if (!request.routeOptions.config.auth?.require) {
         visible_to.push("public");
       }
       if (request.user) {
@@ -95,19 +73,5 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.get<{ Reply: { status: "OK" } }>(
-    "/healthz",
-    {
-      schema: {
-        tags: ["site"],
-        security: [{ bearer: [] }],
-        response: {
-          200: Type.Object({ status: Type.Literal("OK") }),
-        },
-      },
-    },
-    async () => {
-      return { status: "OK" };
-    },
-  );
+  route(fastify, GetHealthz, {}, async () => ({ status: "OK" as const }));
 }

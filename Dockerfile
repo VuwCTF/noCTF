@@ -42,8 +42,9 @@ RUN VITE_API_BASE_URL="https://api.2025.vuwctf.com:8000" pnpm --filter '@noctf/w
 
 FROM joseluisq/static-web-server:2-alpine AS out_web
 COPY --from=build_web /build/apps/web/docker-init /init
-COPY --from=build_web /build/apps/web/dist /public
-COPY --from=build_web /build/apps/web/dist/index.html /public/index.html
+COPY --from=build_web --chown=sws:sws /build/apps/web/dist /home/sws/public
+COPY --from=build_web --chown=sws:sws /build/apps/web/dist/index.html /home/sws/public/index.html
+ENV SERVER_FALLBACK_PAGE=/home/sws/public/index.html
 EXPOSE 80/tcp
 ENTRYPOINT [ "/init/setup.sh" ]
 CMD [ "static-web-server" ]

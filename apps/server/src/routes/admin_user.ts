@@ -1,17 +1,13 @@
 import { SetupConfig } from "@noctf/api/config";
-import { IdParams } from "@noctf/api/params";
-import { SessionQuery } from "@noctf/api/query";
 import {
-  AdminQueryUsersRequest,
-  AdminRevokeSessionsRequest,
-  AdminUpdateUserRequest,
-} from "@noctf/api/requests";
-import {
-  AdminListUsersResponse,
-  AdminResetPasswordResponse,
-  BaseResponse,
-  ListSessionsResponse,
-} from "@noctf/api/responses";
+  AdminDeleteUser,
+  AdminGetUserSessions,
+  AdminQueryUsers,
+  AdminResetUserPassword,
+  AdminRevokeUserSessions,
+  AdminUpdateUser,
+} from "@noctf/api/contract/admin_user";
+import { AdminListUsersResponse } from "@noctf/api/responses";
 import {
   BadRequestError,
   ConflictError,
@@ -21,6 +17,7 @@ import {
 import { ActorType, EntityType } from "@noctf/server-core/types/enums";
 import { OffsetPaginate } from "@noctf/server-core/util/paginator";
 import { Policy } from "@noctf/server-core/util/policy";
+import { route } from "@noctf/server-core/util/route";
 import { FastifyInstance } from "fastify";
 
 export const PAGE_SIZE = 60;
@@ -37,20 +34,13 @@ export async function routes(fastify: FastifyInstance) {
     auditLogService,
   } = fastify.container.cradle;
 
-  fastify.post<{ Reply: AdminListUsersResponse; Body: AdminQueryUsersRequest }>(
-    "/admin/users/query",
+  route(
+    fastify,
+    AdminQueryUsers,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        auth: {
-          require: true,
-          policy: ["admin.user.get"],
-        },
-        body: AdminQueryUsersRequest,
-        response: {
-          200: AdminListUsersResponse,
-        },
+      auth: {
+        require: true,
+        policy: ["admin.user.get"],
       },
     },
     async (request) => {
@@ -95,25 +85,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.put<{
-    Body: AdminUpdateUserRequest;
-    Params: IdParams;
-    Reply: BaseResponse;
-  }>(
-    "/admin/users/:id",
+  route(
+    fastify,
+    AdminUpdateUser,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        auth: {
-          require: true,
-          policy: ["admin.user.update"],
-        },
-        body: AdminUpdateUserRequest,
-        params: IdParams,
-        response: {
-          200: BaseResponse,
-        },
+      auth: {
+        require: true,
+        policy: ["admin.user.update"],
       },
     },
     async (request) => {
@@ -168,23 +146,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.delete<{
-    Reply: BaseResponse;
-    Params: IdParams;
-  }>(
-    "/admin/users/:id",
+  route(
+    fastify,
+    AdminDeleteUser,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: BaseResponse,
-        },
-        params: IdParams,
-        auth: {
-          require: true,
-          policy: ["admin.user.delete"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.user.delete"],
       },
     },
     async (request) => {
@@ -209,25 +177,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.get<{
-    Querystring: SessionQuery;
-    Params: IdParams;
-    Reply: ListSessionsResponse;
-  }>(
-    "/admin/users/:id/sessions",
+  route(
+    fastify,
+    AdminGetUserSessions,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        auth: {
-          require: true,
-          policy: ["admin.session.get"],
-        },
-        params: IdParams,
-        querystring: SessionQuery,
-        response: {
-          200: ListSessionsResponse,
-        },
+      auth: {
+        require: true,
+        policy: ["admin.session.get"],
       },
     },
     async (request) => {
@@ -257,25 +213,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.post<{
-    Params: IdParams;
-    Body: AdminRevokeSessionsRequest;
-    Reply: BaseResponse;
-  }>(
-    "/admin/users/:id/sessions/revoke",
+  route(
+    fastify,
+    AdminRevokeUserSessions,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        auth: {
-          require: true,
-          policy: ["admin.session.revoke"],
-        },
-        params: IdParams,
-        body: AdminRevokeSessionsRequest,
-        response: {
-          200: BaseResponse,
-        },
+      auth: {
+        require: true,
+        policy: ["admin.session.revoke"],
       },
     },
     async (request) => {
@@ -307,23 +251,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.post<{
-    Params: IdParams;
-    Reply: AdminResetPasswordResponse;
-  }>(
-    "/admin/users/:id/reset_password",
+  route(
+    fastify,
+    AdminResetUserPassword,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        auth: {
-          require: true,
-          policy: ["AND", "admin.user.update", "admin.identity.update"],
-        },
-        params: IdParams,
-        response: {
-          200: AdminResetPasswordResponse,
-        },
+      auth: {
+        require: true,
+        policy: ["AND", "admin.user.update", "admin.identity.update"],
       },
     },
     async (request) => {

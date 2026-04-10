@@ -16,8 +16,8 @@ catalogs:
       specifier: ^9.3.0
       version: 9.4.0
     '@sinclair/typebox':
-      specifier: ^0.34.13
-      version: 0.34.13
+      specifier: ^0.34.30
+      version: 0.34.47
     '@types/node':
       specifier: ^22.7.4
       version: 22.10.2
@@ -178,7 +178,7 @@ importers:
         version: link:../../core/server-core
       '@sinclair/typebox':
         specifier: 'catalog:'
-        version: 0.34.13
+        version: 0.34.47
       awilix:
         specifier: 'catalog:'
         version: 12.0.4
@@ -324,7 +324,7 @@ importers:
     dependencies:
       '@sinclair/typebox':
         specifier: 'catalog:'
-        version: 0.34.13
+        version: 0.34.47
     devDependencies:
       typescript:
         specifier: 'catalog:'
@@ -349,7 +349,7 @@ importers:
         version: link:../server-core
       '@sinclair/typebox':
         specifier: 'catalog:'
-        version: 0.34.13
+        version: 0.34.47
       fastify:
         specifier: 'catalog:'
         version: 5.2.0
@@ -386,7 +386,7 @@ importers:
         version: link:../server-core
       '@sinclair/typebox':
         specifier: 'catalog:'
-        version: 0.34.13
+        version: 0.34.47
       fastify:
         specifier: 'catalog:'
         version: 5.2.0
@@ -411,7 +411,7 @@ importers:
         version: link:../server-core
       '@sinclair/typebox':
         specifier: 'catalog:'
-        version: 0.34.13
+        version: 0.34.47
       discord-api-types:
         specifier: ^0.37.114
         version: 0.37.114
@@ -470,7 +470,7 @@ importers:
         version: link:../schema
       '@sinclair/typebox':
         specifier: 'catalog:'
-        version: 0.34.13
+        version: 0.34.47
       ajv:
         specifier: 'catalog:'
         version: 8.17.1
@@ -522,6 +522,9 @@ importers:
       p-limit:
         specifier: 'catalog:'
         version: 6.2.0
+      pg:
+        specifier: 'catalog:'
+        version: 8.13.1
       redis:
         specifier: ^4.7.0
         version: 4.7.0
@@ -532,6 +535,9 @@ importers:
       '@types/nodemailer':
         specifier: ^6.4.17
         version: 6.4.17
+      '@types/pg':
+        specifier: 'catalog:'
+        version: 8.11.10
       '@vitest/coverage-v8':
         specifier: 'catalog:'
         version: 2.1.8(vitest@2.1.8(@types/node@22.10.2)(jsdom@26.1.0)(sass@1.89.2)(terser@5.43.1))
@@ -1998,8 +2004,8 @@ packages:
   '@shikijs/vscode-textmate@10.0.1':
     resolution: {integrity: sha512-fTIQwLF+Qhuws31iw7Ncl1R3HUDtGwIipiJ9iU+UsDUwMhegFcQKQHd51nZjb7CArq0MvON8rbgCGQYWHUKAdg==}
 
-  '@sinclair/typebox@0.34.13':
-    resolution: {integrity: sha512-ceVKqyCEgC355Kw0s/0tyfY9MzMQINSykJ/pG2w6YnaZyrcjV48svZpr8lVZrYgWjzOmrIPBhQRAtr/7eJpA5g==}
+  '@sinclair/typebox@0.34.47':
+    resolution: {integrity: sha512-ZGIBQ+XDvO5JQku9wmwtabcVTHJsgSWAHYtVuM9pBNNR5E88v6Jcj/llpmsjivig5X8A8HHOb4/mbEKPS5EvAw==}
 
   '@sindresorhus/is@7.1.1':
     resolution: {integrity: sha512-rO92VvpgMc3kfiTjGT52LEtJ8Yc5kCWhZjLQ3LwlA4pSgPpQO7bVpYXParOD8Jwf+cVQECJo3yP/4I8aZtUQTQ==}
@@ -6215,7 +6221,7 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.1': {}
 
-  '@sinclair/typebox@0.34.13': {}
+  '@sinclair/typebox@0.34.47': {}
 
   '@sindresorhus/is@7.1.1': {}
 

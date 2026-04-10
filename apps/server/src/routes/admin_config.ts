@@ -1,46 +1,30 @@
-import { UpdateConfigValueRequest } from "@noctf/api/requests";
 import {
-  AdminGetConfigValueResponse,
-  AdminGetConfigSchemaResponse,
-} from "@noctf/api/responses";
+  AdminGetConfigSchema,
+  AdminGetConfigValue,
+  AdminUpdateConfigValue,
+} from "@noctf/api/contract/admin_config";
 import { ActorType } from "@noctf/server-core/types/enums";
-import type { FastifyInstance } from "fastify";
 import "@noctf/server-core/types/fastify";
+import { route } from "@noctf/server-core/util/route";
+import type { FastifyInstance } from "fastify";
 
 export async function routes(fastify: FastifyInstance) {
   const { configService } = fastify.container.cradle;
 
-  fastify.get(
-    "/admin/config",
+  route(
+    fastify,
+    AdminGetConfigSchema,
     {
-      schema: {
-        tags: ["admin"],
-        security: [{ bearer: [] }],
-        auth: { require: true, policy: ["admin.config.get"] },
-        response: {
-          200: AdminGetConfigSchemaResponse,
-        },
-      },
+      auth: { require: true, policy: ["admin.config.get"] },
     },
     () => ({ data: configService.getSchemas() }),
   );
 
-  fastify.get<{
-    Params: {
-      namespace: string;
-    };
-    Reply: AdminGetConfigValueResponse;
-  }>(
-    "/admin/config/:namespace",
+  route(
+    fastify,
+    AdminGetConfigValue,
     {
-      schema: {
-        tags: ["admin"],
-        security: [{ bearer: [] }],
-        auth: { require: true, policy: ["admin.config.get"] },
-        response: {
-          200: AdminGetConfigValueResponse,
-        },
-      },
+      auth: { require: true, policy: ["admin.config.get"] },
     },
     async (request) => {
       return {
@@ -48,22 +32,13 @@ export async function routes(fastify: FastifyInstance) {
       };
     },
   );
-  fastify.put<{
-    Params: {
-      namespace: string;
-    };
-    Body: UpdateConfigValueRequest;
-  }>(
-    "/admin/config/:namespace",
+  route(
+    fastify,
+    AdminUpdateConfigValue,
     {
-      schema: {
-        tags: ["admin"],
-        security: [{ bearer: [] }],
-        body: UpdateConfigValueRequest,
-        auth: {
-          require: true,
-          policy: ["admin.config.update"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.config.update"],
       },
     },
     async (request) => {

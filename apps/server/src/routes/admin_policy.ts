@@ -1,32 +1,23 @@
-import { IdParams } from "@noctf/api/params";
 import {
-  AdminCreatePolicyRequest,
-  AdminUpdatePolicyRequest,
-} from "@noctf/api/requests";
-import {
-  AdminListPolicyResponse,
-  AdminPolicyResponse,
-  BaseResponse,
-} from "@noctf/api/responses";
+  AdminCreatePolicy,
+  AdminDeletePolicy,
+  AdminListPolicies,
+  AdminUpdatePolicy,
+} from "@noctf/api/contract/admin_policy";
 import { ActorType } from "@noctf/server-core/types/enums";
+import { route } from "@noctf/server-core/util/route";
 import { FastifyInstance } from "fastify";
 
 export async function routes(fastify: FastifyInstance) {
   const { policyService } = fastify.container.cradle;
 
-  fastify.get<{ Reply: AdminListPolicyResponse }>(
-    "/admin/policies",
+  route(
+    fastify,
+    AdminListPolicies,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: AdminListPolicyResponse,
-        },
-        auth: {
-          require: true,
-          policy: ["admin.policy.get"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.policy.get"],
       },
     },
     async () => {
@@ -36,23 +27,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.post<{
-    Reply: AdminPolicyResponse;
-    Body: AdminCreatePolicyRequest;
-  }>(
-    "/admin/policies",
+  route(
+    fastify,
+    AdminCreatePolicy,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: AdminPolicyResponse,
-        },
-        body: AdminCreatePolicyRequest,
-        auth: {
-          require: true,
-          policy: ["admin.policy.manage"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.policy.manage"],
       },
     },
     async (request) => {
@@ -68,25 +49,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.put<{
-    Reply: BaseResponse;
-    Body: AdminUpdatePolicyRequest;
-    Params: IdParams;
-  }>(
-    "/admin/policies/:id",
+  route(
+    fastify,
+    AdminUpdatePolicy,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: BaseResponse,
-        },
-        params: IdParams,
-        body: AdminUpdatePolicyRequest,
-        auth: {
-          require: true,
-          policy: ["admin.policy.manage"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.policy.manage"],
       },
     },
     async (request) => {
@@ -101,20 +70,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.delete<{ Reply: BaseResponse; Params: IdParams }>(
-    "/admin/policies/:id",
+  route(
+    fastify,
+    AdminDeletePolicy,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: BaseResponse,
-        },
-        params: IdParams,
-        auth: {
-          require: true,
-          policy: ["admin.policy.manage"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.policy.manage"],
       },
     },
     async (request) => {

@@ -1,34 +1,23 @@
-import { IdParams } from "@noctf/api/params";
 import {
-  AdminCreateAppRequest,
-  AdminUpdateAppRequest,
-} from "@noctf/api/requests";
-import {
-  AdminListAppResponse,
-  AdminAppResponse,
-  AdminAppWithSecretResponse,
-  BaseResponse,
-} from "@noctf/api/responses";
+  AdminCreateApp,
+  AdminDeleteApp,
+  AdminListApps,
+  AdminUpdateApp,
+} from "@noctf/api/contract/admin_app";
 import { ActorType } from "@noctf/server-core/types/enums";
+import { route } from "@noctf/server-core/util/route";
 import { FastifyInstance } from "fastify";
-import { Type } from "@sinclair/typebox";
 
 export async function routes(fastify: FastifyInstance) {
   const { appService } = fastify.container.cradle;
 
-  fastify.get<{ Reply: AdminListAppResponse }>(
-    "/admin/apps",
+  route(
+    fastify,
+    AdminListApps,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: AdminListAppResponse,
-        },
-        auth: {
-          require: true,
-          policy: ["admin.app.get"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.app.get"],
       },
     },
     async () => {
@@ -42,23 +31,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.post<{
-    Reply: AdminAppWithSecretResponse;
-    Body: AdminCreateAppRequest;
-  }>(
-    "/admin/apps",
+  route(
+    fastify,
+    AdminCreateApp,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: AdminAppWithSecretResponse,
-        },
-        body: AdminCreateAppRequest,
-        auth: {
-          require: true,
-          policy: ["admin.app.manage"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.app.manage"],
       },
     },
     async (request) => {
@@ -79,25 +58,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.put<{
-    Reply: AdminAppResponse | AdminAppWithSecretResponse;
-    Body: AdminUpdateAppRequest;
-    Params: IdParams;
-  }>(
-    "/admin/apps/:id",
+  route(
+    fastify,
+    AdminUpdateApp,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: Type.Union([AdminAppResponse, AdminAppWithSecretResponse]),
-        },
-        params: IdParams,
-        body: AdminUpdateAppRequest,
-        auth: {
-          require: true,
-          policy: ["admin.app.manage"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.app.manage"],
       },
     },
     async (request) => {
@@ -125,20 +92,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.delete<{ Reply: BaseResponse; Params: IdParams }>(
-    "/admin/apps/:id",
+  route(
+    fastify,
+    AdminDeleteApp,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: BaseResponse,
-        },
-        params: IdParams,
-        auth: {
-          require: true,
-          policy: ["admin.app.manage"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.app.manage"],
       },
     },
     async (request) => {

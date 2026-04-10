@@ -1,39 +1,25 @@
-import { IdParams } from "@noctf/api/params";
 import {
-  AdminCreateAnnouncementRequest,
-  AdminQueryAnnouncementsRequest,
-  AdminUpdateAnnouncementRequest,
-} from "@noctf/api/requests";
-import {
-  AdminGetAnnouncementDeliveryChannelsResponse,
-  AdminGetAnnouncementResponse,
-  AdminListAnnnouncementsResponse,
-  BaseResponse,
-} from "@noctf/api/responses";
+  AdminCreateAnnouncement,
+  AdminDeleteAnnouncement,
+  AdminGetAnnouncementDeliveryChannels,
+  AdminQueryAnnouncements,
+  AdminUpdateAnnouncement,
+} from "@noctf/api/contract/admin_announcement";
 import { ActorType } from "@noctf/server-core/types/enums";
 import { OffsetPaginate } from "@noctf/server-core/util/paginator";
+import { route } from "@noctf/server-core/util/route";
 import { FastifyInstance } from "fastify";
 
 export async function routes(fastify: FastifyInstance) {
   const { announcementService } = fastify.container.cradle;
 
-  fastify.post<{
-    Reply: AdminListAnnnouncementsResponse;
-    Body: AdminQueryAnnouncementsRequest;
-  }>(
-    "/admin/announcements/query",
+  route(
+    fastify,
+    AdminQueryAnnouncements,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        body: AdminQueryAnnouncementsRequest,
-        response: {
-          200: AdminListAnnnouncementsResponse,
-        },
-        auth: {
-          require: true,
-          policy: ["admin.announcement.get"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.announcement.get"],
       },
     },
     async (request) => {
@@ -53,25 +39,17 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.get<{
-    Reply: AdminGetAnnouncementDeliveryChannelsResponse;
-  }>(
-    "/admin/announcements/delivery_channels",
+  route(
+    fastify,
+    AdminGetAnnouncementDeliveryChannels,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: AdminGetAnnouncementDeliveryChannelsResponse,
-        },
-        auth: {
-          require: true,
-          policy: [
-            "OR",
-            "admin.announcement.create",
-            "admin.announcement.update",
-          ],
-        },
+      auth: {
+        require: true,
+        policy: [
+          "OR",
+          "admin.announcement.create",
+          "admin.announcement.update",
+        ],
       },
     },
     async () => {
@@ -81,23 +59,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.post<{
-    Reply: AdminGetAnnouncementResponse;
-    Body: AdminCreateAnnouncementRequest;
-  }>(
-    "/admin/announcements",
+  route(
+    fastify,
+    AdminCreateAnnouncement,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: AdminGetAnnouncementResponse,
-        },
-        body: AdminCreateAnnouncementRequest,
-        auth: {
-          require: true,
-          policy: ["admin.announcement.create"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.announcement.create"],
       },
     },
     async (request) => {
@@ -120,25 +88,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.put<{
-    Reply: AdminGetAnnouncementResponse;
-    Body: AdminUpdateAnnouncementRequest;
-    Params: IdParams;
-  }>(
-    "/admin/announcements/:id",
+  route(
+    fastify,
+    AdminUpdateAnnouncement,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: AdminGetAnnouncementResponse,
-        },
-        params: IdParams,
-        body: AdminUpdateAnnouncementRequest,
-        auth: {
-          require: true,
-          policy: ["admin.announcement.update"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.announcement.update"],
       },
     },
     async (request) => {
@@ -164,20 +120,13 @@ export async function routes(fastify: FastifyInstance) {
     },
   );
 
-  fastify.delete<{ Reply: BaseResponse; Params: IdParams }>(
-    "/admin/announcements/:id",
+  route(
+    fastify,
+    AdminDeleteAnnouncement,
     {
-      schema: {
-        security: [{ bearer: [] }],
-        tags: ["admin"],
-        response: {
-          200: BaseResponse,
-        },
-        params: IdParams,
-        auth: {
-          require: true,
-          policy: ["admin.announcement.delete"],
-        },
+      auth: {
+        require: true,
+        policy: ["admin.announcement.delete"],
       },
     },
     async (request) => {
