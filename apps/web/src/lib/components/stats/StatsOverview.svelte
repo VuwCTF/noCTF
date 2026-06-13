@@ -103,7 +103,7 @@
   <div class="card bg-base-100 pop rounded-lg">
     <div class="card-body">
       <div class="flex items-center gap-3 mb-6">
-        <Icon icon="material-symbols:person" class="text-3xl text-secondary" />
+        <Icon icon="material-symbols:person" class="text-3xl text-primary" />
         <h3 class="text-2xl font-bold">Users</h3>
       </div>
 
@@ -119,7 +119,7 @@
           {@render numberCard(
             "Teams",
             "mdi:account-group",
-            "text-secondary",
+            "text-primary",
             userStats.team_count,
           )}
         </div>
@@ -129,7 +129,7 @@
             {@render numberCard(
               teamTags.find(({ id }) => id === ttc.id)!.name,
               "material-symbols:auto-label",
-              "text-info",
+              "text-primary",
               ttc.team_count,
             )}
           {/each}
@@ -173,7 +173,7 @@
           {@render numberCard(
             "Hidden",
             "material-symbols:visibility-off",
-            "text-gray-500",
+            "text-primary",
             aggregateStats.hidden_challenges,
           )}
         {/if}
@@ -188,7 +188,7 @@
         {@render numberCard(
           "Unsolved",
           "material-symbols:pending-actions",
-          "text-base-content/50",
+          "text-error",
           aggregateStats.unsolved_challenges,
         )}
       </div>
@@ -199,7 +199,7 @@
   <div class="card bg-base-100 pop rounded-lg">
     <div class="card-body">
       <div class="flex items-center gap-3 mb-6">
-        <Icon icon="material-symbols:send" class="text-3xl text-secondary" />
+        <Icon icon="material-symbols:send" class="text-3xl text-primary" />
         <h3 class="text-2xl font-bold">Submissions</h3>
       </div>
 
@@ -207,7 +207,7 @@
         {@render numberCard(
           "Total",
           "material-symbols:send",
-          "text-secondary",
+          "text-primary",
           aggregateStats.total_submissions,
         )}
 

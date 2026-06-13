@@ -10,6 +10,14 @@
   }
 }
 
+[data-font="Lexend Deca"] {
+    font-family: "Lexend Deca", sans-serif;
+}
+
+[data-font="Amarante"] {
+    font-family: "Amarante", sans-serif;
+}
+
 .markdown-body {
   @apply prose;
   max-width: 95%;

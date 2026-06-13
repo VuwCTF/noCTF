@@ -65,13 +65,13 @@
     </div>
 
     <a href="/" class="text-xl font-bold hidden lg:block"
-      >{configState.siteConfig?.name || "VuwCTF 2025"}</a
+      >{configState.siteConfig?.name || "VuwCTF 2026"}</a
     >
   </div>
 
   <div class="navbar-center lg:hidden">
     <a href="/" class="text-xl font-bold"
-      >{configState.siteConfig?.name || "VuwCTF 2025"}</a
+      >{configState.siteConfig?.name || "VuwCTF 2026"}</a
     >
   </div>
 

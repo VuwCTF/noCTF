@@ -254,7 +254,7 @@
         {member.solveCount}
       </div>
       <div class="flex flex-row items-center gap-1 font-bold text-xl">
-        <Icon icon="material-symbols:stars-outline-rounded" class="text-3xl" />
+        <Icon icon="material-symbols:temp-preferences-eco-outline-rounded" class="text-3xl" />
         {member.totalPoints}
       </div>
     </div>
@@ -445,7 +445,7 @@
             >
               <div class="flex flex-col gap-0 items-center">
                 <div>{ordinal(scoreboardData.rank)}</div>
-                <div class="text-xl font-medium text-primary-content/80">
+                <div class="text-xl font-medium text-primary-content">
                   {scoreboardData.score} points
                 </div>
               </div>

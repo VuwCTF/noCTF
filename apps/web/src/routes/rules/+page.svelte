@@ -23,10 +23,12 @@
         <p class="text-base-content/70 mt-2">
           Flag hoarding (collecting flags to submit at once) is not allowed.
         </p>
+        <p class="text-base-content/70 mt-2">
+          The use of AI models to autonomously solve challenges and their use as assisted search engines is prohibited in this competition.
+        </p>
         <h3 class="text-lg font-semibold mb-2 mt-4">3. Prizes</h3>
         <p class="text-base-content/70">
           Prizes will be awarded to the top 3 teams in both the Secondary and Tertiary divisions based on the final scoreboard at the end of the competition.
-          VuwCTF reserves the right to change the prizes and eligibility criteria at any time without warning.
         </p>
         <p class="text-base-content/70 mt-2">
           In order for a team to be eligible for prizes it must:
@@ -36,16 +38,19 @@
             - Consist of no more than 3 members. Account sharing is not permitted.
           </li>
           <li class="text-base-content/70 mt-3">
-            - For the Secondary division: all participants must have been enrolled in a New Zealand high school (or below) in 2025.
+            - For the Secondary division: all participants must have been enrolled in a New Zealand high school (or below) in 2026.
           </li>
           <li class="text-base-content/70 mt-3">
-            - For the Tertiary division: all participants must have been enrolled in a New Zealand tertiary institution (or equivalent) in 2025.
+            - For the Tertiary division: all participants must have been enrolled in a New Zealand tertiary institution (or equivalent) in 2026.
             Tertiary division teams may contain members who are eligible for the Secondary division.
           </li>
           <li class="text-base-content/70 mt-3">
             - Have no members who are, or are closely related to, the VuwCTF board or other event organisers who had access to challenges in advance.
           </li>
         </ul>
+        <p class="text-base-content/70 mt-2">
+            Teams that have not followed the above rules or do not meet these requirements will be disqualified from prize eligibility and the award shall go to the next-most scoring eligible team.
+        </p>
       </div>
     </div>
   </div>

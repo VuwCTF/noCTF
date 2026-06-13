@@ -52,44 +52,15 @@
     localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
 
-    if (!document.cookie.includes("vuwctf-reset")) {
-      window.localStorage.removeItem("noctf-session-token");
-      window.localStorage.removeItem("noctf-user");
-      localStorage.removeItem("noctf-session-token");
-      localStorage.removeItem("noctf-user");
-      console.log("cleared session");
-      document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
-      window.location.reload();
-    }
+    const font =
+      localStorage.getItem("font") || "Lexend Deca";
+    localStorage.setItem("font", font);
+    document.documentElement.setAttribute("data-font", font);
   });
-
-  onNavigate(() => {
-    if (!document.cookie.includes("vuwctf-reset")) {
-      window.localStorage.removeItem("noctf-session-token");
-      window.localStorage.removeItem("noctf-user");
-      localStorage.removeItem("noctf-session-token");
-      localStorage.removeItem("noctf-user");
-      console.log("cleared session");
-      document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
-      window.location.reload();
-    }
-  })
-
-  beforeNavigate(() => {
-    if (!document.cookie.includes("vuwctf-reset")) {
-      window.localStorage.removeItem("noctf-session-token");
-      window.localStorage.removeItem("noctf-user");
-      localStorage.removeItem("noctf-session-token");
-      localStorage.removeItem("noctf-user");
-      console.log("cleared session");
-      document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
-      window.location.reload();
-    }
-  })
 </script>
 
 <svelte:head>
-  <title>{configState.siteConfig?.name || "VuwCTF 2025"}</title>
+  <title>{configState.siteConfig?.name || "VuwCTF 2026"}</title>
 </svelte:head>
 
 <div class="flex flex-col min-h-screen h-auto">
@@ -131,15 +102,4 @@
   <footer class="text-center pb-4 text-xs">
     Powered by <a href="https://noctf.dev" class="text-primary">noCTF</a>
   </footer>
-  <script>
-      if (!document.cookie.includes("vuwctf-reset")) {
-        window.localStorage.removeItem("noctf-session-token");
-        window.localStorage.removeItem("noctf-user");
-        localStorage.removeItem("noctf-session-token");
-        localStorage.removeItem("noctf-user");
-        console.log("cleared session");
-        document.cookie = "vuwctf-reset=; expires=Thu, 01 Jan 2026 00:00:00 UTC; path=/;";
-        window.location.reload(true);
-      }
-  </script>
 </div>

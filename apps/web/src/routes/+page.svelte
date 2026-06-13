@@ -2,12 +2,67 @@
   import DifficultyChip from "$lib/components/challenges/DifficultyChip.svelte";
   import SponsorChip from "$lib/components/SponsorChip.svelte";
   import configState from "$lib/state/config.svelte";
+  import { onMount } from "svelte";
+  onMount(() => {
+    const startDate = new Date(1785535200000).getTime();
+    const endDate = new Date(1785646800000).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      let distance = startDate - now;
+
+      if (distance < 0) {
+        if (now >= endDate) {
+          document.getElementById("clock-header")!.innerHTML =
+            (configState.siteConfig?.name || "VuwCTF 2026") + " has ended";
+          clearInterval(interval);
+          return;
+        }
+        distance = endDate - now;
+        document.getElementById("clock-header")!.innerHTML =
+          (configState.siteConfig?.name || "VuwCTF 2026") + " ends in";
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days")!.innerText = String(days).padStart(
+        2,
+        "0",
+      );
+      document.getElementById("hours")!.innerText = String(hours).padStart(
+        2,
+        "0",
+      );
+      document.getElementById("minutes")!.innerText = String(minutes).padStart(
+        2,
+        "0",
+      );
+      document.getElementById("seconds")!.innerText = String(seconds).padStart(
+        2,
+        "0",
+      );
+    };
+
+    updateCountdown();
+    var interval = setInterval(updateCountdown, 1000);
+  });
 </script>
 
+<div class="h-80 flex justify-center">
+  <img
+    src="vuwse.svg"
+    alt="A cartoonish drawing of a moose with antlers that spell Vuw and back markings that spell CTF"
+  />
+</div>
 <div class="h-20 flex justify-center items-end">
   <div class="center font-mono font-extrabold">
     <p id="clock-header" class="center text-5xl font-mono font-extrabold">
-      {configState.siteConfig?.name || "VuwCTF 2025"} has ended
+      {configState.siteConfig?.name || "VuwCTF 2025"} starts in
     </p>
   </div>
 </div>
@@ -31,7 +86,7 @@
 </div>
 <div class="m-auto article">
   <div style="width:fit-content" class="mt-10 m-auto center text-2xl font-bold">
-    Welcome to VuwCTF 2025!
+    Welcome to VuwCTF 2026!
   </div>
   <div style="width:fit-content" class="mt-3 m-auto center text-m">
     Ticket support for <DifficultyChip difficulty="easy" /> challenges is available
@@ -42,17 +97,17 @@
   </div>
   <div style="width:fit-content" class="mt-3 m-auto center text-m">
     The top three placing teams in both the Tertiary and Secondary divisions
-    will recieve $200, $120, and $60 NZD respectively, after verification of
-    academic status. In addition, the first and second placing teams in both
-    divisions will recieve 3 PentesterLab Pro 1 month subscriptions. Prize
-    eligible teams may not consist of more than three participants. For more
-    information on prize eligibility, please see the <a
+    will recieve $400, $240, and $120 NZD respectively, after verification of
+    academic status. Prize eligible teams may not consist of more than three
+    participants. For more information on prize eligibility, please see the <a
       style="text-decoration: underline"
       href="/rules">rules page</a
     >.
   </div>
   <div style="width:fit-content" class="mt-3 m-auto center text-m">
-    We'd also like to thank the DownUnderCTF / noCTF team for their support and for their software. Without their work this CTF would look a lot worse and would have drained a lot more of our sanity.
+    We'd also like to thank the DownUnderCTF / noCTF team for their support and
+    for their software. Without their work this CTF would look a lot worse and
+    would have drained a lot more of our sanity.
   </div>
 </div>
 <div class="m-auto article">

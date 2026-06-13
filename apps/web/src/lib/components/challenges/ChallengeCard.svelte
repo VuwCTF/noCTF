@@ -66,8 +66,8 @@
         <div class="flex flex-row items-center gap-1 font-bold text-xl">
           <Icon
             icon={data.isSolved
-              ? "material-symbols:check-circle-outline-rounded"
-              : "material-symbols:stars-outline-rounded"}
+              ? "material-symbols:sword-rose-outline-rounded"
+              : "material-symbols:temp-preferences-eco-outline-rounded"}
             class="text-3xl"
           />
           {data.points}

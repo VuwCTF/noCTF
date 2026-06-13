@@ -1,4 +1,5 @@
 <script lang="ts">
+  import FontSwitcher from "$lib/components/FontSwitcher.svelte";
   import ThemeSwitcher from "$lib/components/ThemeSwitcher.svelte";
 </script>
 
@@ -19,6 +20,22 @@
         </div>
         <button class="btn btn-primary pop hover:pop pl-1 pr-4">
           <ThemeSwitcher detailed={true} />
+        </button>
+      </div>
+    </div>
+
+    <div class="card bg-base-200 p-4 mt-6 rounded-lg">
+      <div
+        class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+      >
+        <div>
+          <p class="font-medium">Font</p>
+          <p class="text-sm text-base-content/70">
+              Switch from <span style="font-family: 'Lexend Deca'">Lexend</span> to <span style="font-family: 'Amarante'">Amarante</span>
+          </p>
+        </div>
+        <button class="btn btn-primary pop hover:pop pl-1 pr-4">
+          <FontSwitcher detailed={true} />
         </button>
       </div>
     </div>
