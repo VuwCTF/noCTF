@@ -197,6 +197,11 @@ export const MeUserResponse = Type.Object({
 });
 export type MeUserResponse = Static<typeof MeUserResponse>;
 
+export const GetGlobalPointsResponse = Type.Object({
+    data: Type.Number(),
+});
+export type GetGlobalPointsReponse = Static<typeof GetGlobalPointsResponse>;
+
 export const ListChallengesResponse = Type.Object({
   data: Type.Object({
     challenges: Type.Array(

@@ -2,6 +2,7 @@ import { SetupConfig } from "@noctf/api/config";
 import {
   GetChallenge,
   GetChallengeSolves,
+  GetGlobalPoints,
   ListChallenges,
   SolveChallenge,
 } from "@noctf/api/contract/challenge";
@@ -25,6 +26,35 @@ export async function routes(fastify: FastifyInstance) {
 
   const { gateStartTime } = GetUtils(fastify.container.cradle);
   const adminPolicy: Policy = ["admin.challenge.get"];
+
+  route(
+    fastify,
+    GetGlobalPoints,
+    {
+      auth: {
+        policy: ["OR", "challenge.get", "admin.challenge.get"],
+      },
+    },
+    async () => {
+      const scoreObj = await scoreboardService.getChallengesSummary(
+        1, // TODO: configurable default
+      );
+
+      const totalpoints = Object.values(scoreObj).reduce(
+        (total_score, challenge_summary) => {
+          return (
+            total_score +
+            challenge_summary.solve_count * challenge_summary.value
+          );
+        },
+        0,
+      );
+
+      return {
+        data: totalpoints,
+      };
+    },
+  );
 
   route(
     fastify,

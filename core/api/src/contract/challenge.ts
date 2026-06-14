@@ -5,6 +5,7 @@ import {
   BaseResponse,
   GetChallengeResponse,
   GetChallengeSolvesResponse,
+  GetGlobalPointsResponse,
   ListChallengesResponse,
   SolveChallengeResponse,
 } from "../responses.ts";
@@ -19,6 +20,17 @@ export const ListChallenges = {
       200: ListChallengesResponse,
     },
   },
+} as const satisfies RouteDef;
+
+export const GetGlobalPoints = {
+    method: "GET",
+    url: "/points",
+    schema: {
+        tags: ["challenge"],
+        response: {
+            200: GetGlobalPointsResponse,
+        }
+    }
 } as const satisfies RouteDef;
 
 export const GetChallenge = {
