@@ -51,7 +51,11 @@ export async function routes(fastify: FastifyInstance) {
       );
 
       return {
-        data: totalpoints,
+        data: {
+          points: totalpoints,
+          pointGoal: 100_000,
+          stretchFactor: 5,
+        },
       };
     },
   );

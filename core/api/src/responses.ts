@@ -198,7 +198,11 @@ export const MeUserResponse = Type.Object({
 export type MeUserResponse = Static<typeof MeUserResponse>;
 
 export const GetGlobalPointsResponse = Type.Object({
-    data: Type.Number(),
+  data: Type.Object({
+    points: Type.Number(),
+    pointGoal: Type.Number(),
+    stretchFactor: Type.Number(),
+  }),
 });
 export type GetGlobalPointsReponse = Static<typeof GetGlobalPointsResponse>;
 
