@@ -55,7 +55,10 @@
 </script>
 
 <div
-  style="height: calc({statsState.stats?.points || 0}/{statsState.stats?.pointGoal || 100_000} * 400px + 100px);"
+  style="height: {((statsState.stats?.points || 0) /
+    (statsState.stats?.pointGoal || 100_000)) *
+    400 +
+    100}px;"
   class="h-80 flex justify-center"
 >
   <img
@@ -68,10 +71,14 @@
   <div class="h-10 mt-4 center progress-container">
     <div
       class="progress-bar"
-      style="transform:translate3d(calc(-{(statsState.stats?.pointGoal || 100_000) * (statsState.stats?.stretchFactor || 2) / 100 - (statsState.stats?.points || 0)}%), 0, 0);"
+      style="transform:translate3d(-{100 -
+        ((statsState.stats?.points || 0) * 100) /
+          (statsState.stats?.pointGoal || 100_000)}%, 0, 0);"
     ></div>
   </div>
-  <p class="progress-text center">{statsState.stats?.points || 0}/{statsState.stats?.pointGoal || 100_000} points</p>
+  <p class="progress-text center">
+    {statsState.stats?.points || 0}/{statsState.stats?.pointGoal || 100_000} points
+  </p>
 </div>
 
 <div class="h-20 flex justify-center items-end">
