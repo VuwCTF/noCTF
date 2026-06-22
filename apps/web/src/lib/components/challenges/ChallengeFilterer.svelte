@@ -79,7 +79,7 @@
     <Icon icon={categoryToIcon(category)} height="70%" class="w-auto" />
     <div>{category}</div>
     <div class="flex-grow"></div>
-    <div class={selected ? "text-gray-200" : "text-gray-500"}>
+    <div class={selected ? "text-gray-500" : "text-gray-500"}>
       {solved}/{total}
     </div>
   </button>

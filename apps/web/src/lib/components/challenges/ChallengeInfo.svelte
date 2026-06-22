@@ -159,8 +159,8 @@
         {#if challData?.difficulty}
           <DifficultyChip difficulty={challData?.difficulty as Difficulty} />
         {/if}
-        <div class="bg-neutral-400 w-full h-[1px]"></div>
-        <div class="self-center flex flex-row gap-1 text-2xl text-neutral-400">
+        <div class="bg-neutral-950 w-full h-[1px]"></div>
+        <div class="self-center flex flex-row gap-1 text-2xl text-neutral-950">
           {#each challData!.categories! as cat}
             <div class="tooltip" data-tip={cat}>
               <Icon icon={categoryToIcon(cat)} />
