@@ -90,7 +90,7 @@
 <div class="h-20 flex justify-center items-end">
   <div class="center font-mono font-extrabold">
     <p id="clock-header" class="center text-5xl font-mono font-extrabold">
-      {configState.siteConfig?.name || "VuwCTF 2025"} starts in
+      {configState.siteConfig?.name || "VuwCTF 2026"} starts in
     </p>
   </div>
 </div>
