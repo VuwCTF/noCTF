@@ -16,7 +16,8 @@ export default {
   vite: {
     server: {
       proxy: {
-        "/api": "https://api.2025.vuwctf.com:8000",
+        // "/api": "http://localhost:8000",
+        "/api": "https://api.2026.vuwctf.com:8000",
       },
     },
   },
