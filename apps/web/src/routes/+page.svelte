@@ -136,104 +136,86 @@
   <div style="width:fit-content" class="mt-10 m-auto center text-2xl font-bold">
     Sponsors
   </div>
-  <div style="width:fit-content" class="mt-3 m-auto center text-m">
+  <div style="width:fit-content" class="mt-3 m-auto center text-m mb-8">
     We're grateful for the support of our sponsors, without whom this event
     would not be possible.
   </div>
 
-  <div
-    style="grid-template-columns: 40% 60%"
-    class="m-auto center text-m sponsor-grid silver"
-  >
-    <a href="https://carapace.nz" style="justify-self: center;">
-      <img src="/sponsors/carapace.png" alt="Carapace logo" /></a
+  <div class="flex flex-col mb-8" style="align-items: center">
+    <a href="https://catalystcloud.nz" class="mb-4" style="width: 70%;">
+      <img src="/sponsors/catalyst-cloud.png" alt="Catalyst Cloud logo" /></a
     >
-    <div
-      style="grid-column-start: 1; grid-row-start: 2; width: fit-content"
-      class="m-auto mt-3"
-    >
-      <SponsorChip tier="Silver" />
-    </div>
-    <div style="grid-column-start: 2; grid-row: 1 / 2; padding: 20px">
-      Carapace is a specialist security testing consultancy. We recognise the
-      need to support and foster the next generation of amazing talent in this
-      sector, so we're proud to sponsor VUWCTF 2025.
-    </div>
+    <SponsorChip tier="Infra" />
   </div>
 
-  <div class="m-auto center text-m sponsor-grid bronze">
-    <a href="https://pentesterlab.com"
-      ><img
-        src="/sponsors/pentesterlab.png"
-        alt="PentesterLab logo"
-        style="grid-column-start: 1; grid-row-start: 1; padding: 10px; justify-self: center"
-      /></a
-    >
-    <div
-      style="grid-column-start: 1; grid-row-start: 2; width: fit-content; justify-self: center"
-      class="m-auto mt-3"
-    >
-      <SponsorChip tier="Bronze" />
+  <div class="flex flex-col mb-8" style="align-items: center">
+    <div class="flex flex-row justify-center" style="align-items: center">
+      <a href="https://catalystcloud.nz" class="m-4" style="width: 35%;">
+        <img
+          src="/sponsors/ieee-yp.png"
+          alt="IEEE Young Professionals logo"
+        /></a
+      >
+      <a href="https://catalystcloud.nz" class="m-4" style="width: 35%;">
+        <img
+          src="/sponsors/ieee-foundation.png"
+          alt="IEEE Foundation logo"
+          width="100%"
+        /></a
+      >
     </div>
+    <SponsorChip tier="Gold" />
+  </div>
+
+  <div class="flex flex-col mb-8" style="align-items: center">
+    <a href="https://catalystcloud.nz" class="mb-4" style="width: 50%;">
+      <img src="/sponsors/pakiki.png" alt="Pākiki logo" /></a
+    >
+    <SponsorChip tier="Gold" />
+  </div>
+
+  <div class="flex flex-col mb-8" style="align-items: center">
+    <a href="https://catalystcloud.nz" class="mb-4" style="width: 50%;">
+      <img src="/sponsors/aura-transparent.png" alt="Aura Information Security logo" /></a
+    >
+    <SponsorChip tier="Gold" />
+    <p style="width:fit-content" class="mt-3 m-auto center text-m">
+        Aura Information Security is a New Zealand cybersecurity consultancy founded
+        in 2006, now part of the state-owned Kordia Group. They offer independent
+        advisory, assurance, compliance and technical testing services to help
+        organisations understand and reduce cyber risk. Their work covers five main
+        areas: cybersecurity strategy and leadership advice for executives and
+        boards; penetration testing and technical assurance across applications,
+        infrastructure and cloud platforms; incident preparedness through response
+        planning and scenario-based exercises. Aura combines deep technical
+        expertise with broad enterprise-scale capability, so there's no need to
+        choose between a narrow specialist and a generalist firm. Every piece of
+        work is tailored to the specific environment and risk profile rather than
+        relying on generic reports or off-the-shelf frameworks. Being part of a
+        State-Owned Enterprise means data stays in New Zealand, consultants are
+        vetted employees rather than contractors, and the organisation is Five-Eyes
+        safe, important for anything touching data sovereignty. Aura has offices in
+        Wellington, Auckland, Christchurch and Melbourne, holds CREST and government
+        panel accreditations, and has been recognised as New Zealand's Best Security
+        Company in 2017, 2018 and 2024.
+    </p>
+  </div>
+
+  <div class="flex flex-col mb-8" style="align-items: center">
+    <a href="https://catalystcloud.nz" class="mb-4" style="width: 30%;">
+      <img src="/sponsors/carapace.png" alt="Carapace logo" /></a
+    >
+    <SponsorChip tier="Silver" />
   </div>
 </div>
 
 <style>
-  .sponsor-grid {
-    display: grid;
-    margin-bottom: 0.5rem;
-  }
-
-  .silver img {
-    max-height: 11rem;
-    grid-column-start: 1;
-    grid-row-start: 1 / 1;
-    padding: 20px;
-    padding-bottom: 0;
-    justify-self: center;
-  }
-
-  .silver {
-    /* width: fit-content; */
-    grid-template-rows: auto 50px;
-  }
-
-  .bronze {
-    width: 30%;
-    grid-template-rows: 60px 50px;
-  }
-
   .article {
     max-width: min(60vw, 900px);
     margin-bottom: 2rem;
   }
 
   @media (max-width: 1000px) {
-    .sponsor-grid {
-      display: block;
-      width: auto;
-      margin-bottom: 1.5rem;
-    }
-
-    .sponsor-grid img {
-      max-width: 400px;
-      margin: auto;
-    }
-
-    .silver {
-      & img {
-        padding-bottom: 15px;
-      }
-      & .mt-3 {
-        margin-top: 0;
-      }
-    }
-
-    .bronze img {
-      max-width: 300px;
-      width: 60vw;
-    }
-
     .text-5xl {
       font-size: 1.8rem;
     }
