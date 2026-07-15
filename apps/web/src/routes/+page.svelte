@@ -119,7 +119,7 @@
   <div style="width:fit-content" class="mt-3 m-auto center text-m">
     Ticket support for <DifficultyChip difficulty="easy" /> challenges is available
     in our
-    <a style="text-decoration:underline" href="https://discord.gg/AjMZVkwSx9"
+    <a style="text-decoration:underline" href="https://discord.gg/hZKXMEpb69"
       >Discord server</a
     > in #ticket-support. Please also direct any pertinent issues there.
   </div>
