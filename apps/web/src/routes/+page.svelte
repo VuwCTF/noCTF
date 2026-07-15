@@ -4,7 +4,13 @@
   import configState from "$lib/state/config.svelte";
   import statsState from "$lib/state/stats.svelte";
   import { onMount } from "svelte";
+  let currentTheme: string = "dark";
+
   onMount(() => {
+    const storedTheme = localStorage.getItem("theme");
+    currentTheme = storedTheme || "dark";
+    document.documentElement.setAttribute("data-theme", currentTheme);
+
     const startDate = new Date(1785535200000).getTime();
     const endDate = new Date(1785646800000).getTime();
 
@@ -150,13 +156,13 @@
 
   <div class="flex flex-col mb-8" style="align-items: center">
     <div class="flex flex-row justify-center" style="align-items: center">
-      <a href="https://catalystcloud.nz" class="m-4" style="width: 35%;">
+      <a href="https://yp.ieee.org/" class="m-4" style="width: 35%;">
         <img
-          src="/sponsors/ieee-yp.png"
+          src={currentTheme === "dark" ? "/sponsors/ieee-yp-white.png" : "/sponsors/ieee-yp.png"}
           alt="IEEE Young Professionals logo"
         /></a
       >
-      <a href="https://catalystcloud.nz" class="m-4" style="width: 35%;">
+      <a href="https://www.ieeefoundation.org" class="m-4" style="width: 35%;">
         <img
           src="/sponsors/ieee-foundation.png"
           alt="IEEE Foundation logo"
@@ -168,36 +174,43 @@
   </div>
 
   <div class="flex flex-col mb-8" style="align-items: center">
-    <a href="https://catalystcloud.nz" class="mb-4" style="width: 50%;">
+    <a href="https://www.pakiki.co.nz/" class="mb-4" style="width: 50%;">
       <img src="/sponsors/pakiki.png" alt="Pākiki logo" /></a
     >
     <SponsorChip tier="Gold" />
   </div>
 
   <div class="flex flex-col mb-8" style="align-items: center">
-    <a href="https://catalystcloud.nz" class="mb-4" style="width: 50%;">
-      <img src="/sponsors/aura-transparent.png" alt="Aura Information Security logo" /></a
+    <a
+      href="https://www.kordia.co.nz/cyber-security/advise"
+      class="mb-4"
+      style="width: 50%;"
+    >
+      <img
+        src="/sponsors/aura-transparent.png"
+        alt="Aura Information Security logo"
+      /></a
     >
     <SponsorChip tier="Gold" />
     <p style="width:fit-content" class="mt-3 m-auto center text-m">
-        Aura Information Security is a New Zealand cybersecurity consultancy founded
-        in 2006, now part of the state-owned Kordia Group. They offer independent
-        advisory, assurance, compliance and technical testing services to help
-        organisations understand and reduce cyber risk. Their work covers five main
-        areas: cybersecurity strategy and leadership advice for executives and
-        boards; penetration testing and technical assurance across applications,
-        infrastructure and cloud platforms; incident preparedness through response
-        planning and scenario-based exercises. Aura combines deep technical
-        expertise with broad enterprise-scale capability, so there's no need to
-        choose between a narrow specialist and a generalist firm. Every piece of
-        work is tailored to the specific environment and risk profile rather than
-        relying on generic reports or off-the-shelf frameworks. Being part of a
-        State-Owned Enterprise means data stays in New Zealand, consultants are
-        vetted employees rather than contractors, and the organisation is Five-Eyes
-        safe, important for anything touching data sovereignty. Aura has offices in
-        Wellington, Auckland, Christchurch and Melbourne, holds CREST and government
-        panel accreditations, and has been recognised as New Zealand's Best Security
-        Company in 2017, 2018 and 2024.
+      Aura Information Security is a New Zealand cybersecurity consultancy
+      founded in 2006, now part of the state-owned Kordia Group. They offer
+      independent advisory, assurance, compliance and technical testing services
+      to help organisations understand and reduce cyber risk. Their work covers
+      five main areas: cybersecurity strategy and leadership advice for
+      executives and boards; penetration testing and technical assurance across
+      applications, infrastructure and cloud platforms; incident preparedness
+      through response planning and scenario-based exercises. Aura combines deep
+      technical expertise with broad enterprise-scale capability, so there's no
+      need to choose between a narrow specialist and a generalist firm. Every
+      piece of work is tailored to the specific environment and risk profile
+      rather than relying on generic reports or off-the-shelf frameworks. Being
+      part of a State-Owned Enterprise means data stays in New Zealand,
+      consultants are vetted employees rather than contractors, and the
+      organisation is Five-Eyes safe, important for anything touching data
+      sovereignty. Aura has offices in Wellington, Auckland, Christchurch and
+      Melbourne, holds CREST and government panel accreditations, and has been
+      recognised as New Zealand's Best Security Company in 2017, 2018 and 2024.
     </p>
   </div>
 
