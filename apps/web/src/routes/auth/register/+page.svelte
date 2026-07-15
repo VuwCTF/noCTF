@@ -9,6 +9,7 @@
   let passwordVisible = $state(false);
   let isLoading = $state(true);
   let registrationViaToken = $state(false);
+  let aiChecked = $state(false);
 
   async function handleSubmit(e: Event) {
     e.preventDefault();
@@ -106,10 +107,32 @@
     </div>
   </div>
 
+  <div class="form-control mt-4">
+    <label for="password-reg" class="label">
+      <span class="label-text">AI Agreement</span>
+    </label>
+    <div class="flex flex-row" style="align-items: center;">
+      <input
+        id="ai-checkbox"
+        type="checkbox"
+        class="input input-bordered pr-10"
+        bind:checked={aiChecked}
+        required
+      />
+      <p class="right-3 ml-4 top-1/2 text-gray-500">
+        I understand that VuwCTF 2026 is an AI-free event, and that using AI
+        tools to assist in solving challenges will result in disqualification.
+      </p>
+    </div>
+  </div>
+
   <button
     class="btn btn-primary w-full mt-6 pop hover:pop"
     type="submit"
-    disabled={isLoading || !loginState.username || !loginState.password}
+    disabled={isLoading ||
+      !loginState.username ||
+      !loginState.password ||
+      !aiChecked}
   >
     {#if isLoading}
       <span class="loading loading-spinner loading-sm"></span>
