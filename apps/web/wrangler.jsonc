@@ -9,7 +9,7 @@
 	},
   "routes": [
     {
-      "pattern": "2025.vuwctf.com",
+      "pattern": "2026.vuwctf.com",
       "custom_domain": true
     }
   ],
