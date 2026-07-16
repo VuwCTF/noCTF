@@ -4,11 +4,11 @@
   import configState from "$lib/state/config.svelte";
   import statsState from "$lib/state/stats.svelte";
   import { onMount } from "svelte";
-  let currentTheme: string = "dark";
+  let currentTheme: string = "light";
 
   onMount(() => {
     const storedTheme = localStorage.getItem("theme");
-    currentTheme = storedTheme || "dark";
+    currentTheme = storedTheme || "light";
     document.documentElement.setAttribute("data-theme", currentTheme);
 
     const startDate = new Date(1785535200000).getTime();
