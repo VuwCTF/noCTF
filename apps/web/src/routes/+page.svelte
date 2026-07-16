@@ -152,6 +152,14 @@
       <img src="/sponsors/catalyst-cloud.png" alt="Catalyst Cloud logo" /></a
     >
     <SponsorChip tier="Infra" />
+    <p style="width:fit-content" class="mt-3 m-auto center text-m">
+        Catalyst Cloud is New Zealand's sovereign cloud provider, owned and
+        operated entirely in Aotearoa. Everything we run sits on New Zealand
+        soil, under New Zealand law, giving our customers real control over
+        their data and digital future.  We believe New Zealand should own its
+        own digital future, and that means investing in the people, skills, and
+        systems that will build it.
+    </p>
   </div>
 
   <div class="flex flex-col mb-8" style="align-items: center">
@@ -178,6 +186,13 @@
       <img src="/sponsors/pakiki.png" alt="Pākiki logo" /></a
     >
     <SponsorChip tier="Gold" />
+    <p style="width:fit-content" class="mt-3 m-auto center text-m">
+    Our vision at Pākiki Security is to make New Zealand businesses more 
+    secure and to be the cybersecurity employer and provider of choice in 
+    Aotearoa. Our mission is to deliver world-class penetration testing 
+    and cybersecurity advice, foster a culture of excellence and provide 
+    unparalleled support and expertise to our clients.
+    </p>
   </div>
 
   <div class="flex flex-col mb-8" style="align-items: center">
