@@ -4,7 +4,7 @@ export const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(",")
   : ["localhost"];
 export const LOG_LEVEL = process.env.LOG_LEVEL || "info";
-export const API_URL = process.env.API_URL || "http://localhost:8000";
+export const API_URL = process.env.API_URL || "https://api.2026.vuwctf.com:8000";
 export const POSTGRES_URL =
   process.env.POSTGRES_URL || "postgres://localhost/noctf";
 export const NATS_URL = process.env.NATS_URL || "nats://localhost:4222";
