@@ -187,10 +187,10 @@
     >
     <SponsorChip tier="Gold" />
     <p style="width:fit-content" class="mt-3 m-auto center text-m">
-    Our vision at Pākiki Security is to make New Zealand businesses more 
-    secure and to be the cybersecurity employer and provider of choice in 
-    Aotearoa. Our mission is to deliver world-class penetration testing 
-    and cybersecurity advice, foster a culture of excellence and provide 
+    Our vision at Pākiki Security is to make New Zealand businesses more
+    secure and to be the cybersecurity employer and provider of choice in
+    Aotearoa. Our mission is to deliver world-class penetration testing
+    and cybersecurity advice, foster a culture of excellence and provide
     unparalleled support and expertise to our clients.
     </p>
   </div>
@@ -230,10 +230,17 @@
   </div>
 
   <div class="flex flex-col mb-8" style="align-items: center">
-    <a href="https://catalystcloud.nz" class="mb-4" style="width: 30%;">
+    <a href="https://carapace.nz" class="mb-4" style="width: 30%;">
       <img src="/sponsors/carapace.png" alt="Carapace logo" /></a
     >
     <SponsorChip tier="Silver" />
+    <p style="width:fit-content" class="mt-3 m-auto center text-m">
+        Carapace is proud to support VuwCTF again this year. Encouraging the next
+        generation of security professionals is very important to us, and we look
+        forward to seeing where VuwCTF participants take their careers. We're 
+        always excited to meet new people to the sector - if you see us at an 
+        event, feel free to introduce yourself!
+    </p>
   </div>
 </div>
 
