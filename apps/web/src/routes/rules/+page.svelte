@@ -1,9 +1,9 @@
 <div class="flex flex-col items-center pb-10">
   <div class="w-full max-w-4xl px-4 mt-8">
     <div class=" ">
-      <h2 class="text-2xl font-bold mb-6 text-center">Rules</h2> 
+      <h2 class="text-2xl font-bold mb-6 text-center">Rules</h2>
       <div class="px-6">
-        <h3 class="text-lg font-semibold mb-2 mt-4">1. Participant Conduct</h3> 
+        <h3 class="text-lg font-semibold mb-2 mt-4">1. Participant Conduct</h3>
         <p class="text-base-content/70">
           Be kind and respectful. The competition is a place for learning, so discrimination (including on the basis of skill level) or other forms of harassment are not tolerated.
         </p>
@@ -25,6 +25,9 @@
         </p>
         <p class="text-base-content/70 mt-2">
           The use of AI models to autonomously solve challenges and their use as assisted search engines is prohibited in this competition.
+        </p>
+        <p class="text-base-content/70 mt-2">
+          Bruteforcing should only be employed to solve for a maximum of one byte of information at a time.
         </p>
         <h3 class="text-lg font-semibold mb-2 mt-4">3. Prizes</h3>
         <p class="text-base-content/70">
