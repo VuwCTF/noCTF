@@ -65,17 +65,14 @@ export class S3FileProviderInstance implements FileProviderInstance {
   async getURL(ref: string): Promise<string> {
     const path = `${S3FileProviderInstance.PREFIX}${ref}`;
     // windowing to improve caching
-    let iat = Math.floor(Date.now() / 1000);
-    iat =
-      S3FileProviderInstance.SIGNED_URL_WINDOW *
-      Math.floor(iat / S3FileProviderInstance.SIGNED_URL_WINDOW);
-    return await this.client.presignedGetObject(
+    // let iat = Math.floor(Date.now() / 1000);
+    // iat =
+    //   S3FileProviderInstance.SIGNED_URL_WINDOW *
+    //   Math.floor(iat / S3FileProviderInstance.SIGNED_URL_WINDOW);
+    return await this.client.getPresignedUrl(
       'GET',
       path,
-      S3FileProviderInstance.SIGNED_URL_WINDOW * 2,
-      undefined,
-      new Date(iat * 1000),
-    );
+      S3FileProviderInstance.SIGNED_URL_WINDOW * 2);
   }
 
   async download(): Promise<[Readable, Omit<FileMetadata, "url">]> {
