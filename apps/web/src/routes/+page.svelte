@@ -54,9 +54,11 @@
         "0",
       );
     };
-
+    
     updateCountdown();
     var interval = setInterval(updateCountdown, 1000);
+    
+    return () => {clearInterval(interval);}
   });
 </script>
 
