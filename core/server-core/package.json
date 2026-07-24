@@ -28,13 +28,13 @@
     "ky": "catalog:",
     "kysely": "catalog:",
     "mime-types": "^2.1.35",
-    "minio": "^8.0.5",
     "nanoid": "catalog:",
     "nats": "^2.28.2",
     "nodemailer": "^6.10.0",
     "p-limit": "catalog:",
     "pg": "catalog:",
-    "redis": "^4.7.0"
+    "redis": "^4.7.0",
+    "s3mini": "^0.9.5"
   },
   "devDependencies": {
     "@types/mime-types": "^2.1.4",

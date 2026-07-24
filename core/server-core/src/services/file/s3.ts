@@ -1,7 +1,7 @@
 import { FileMetadata } from "@noctf/api/datatypes";
 import { PassThrough, Readable } from "stream";
 import { nanoid } from "nanoid";
-import { Client } from "minio";
+import { S3mini } from "s3mini";
 import {
   FileProvider,
   FileProviderInstance,
@@ -12,21 +12,18 @@ import { summarizeFile } from "./summarize.ts";
 import { NotImplementedError } from "../../errors.ts";
 
 export const S3FileProviderConfig = Type.Object({
-  endPoint: Type.String(),
-  useSSL: Type.Optional(Type.Boolean()),
-  port: Type.Optional(Type.Integer({ minimum: 1, maximum: 65535 })),
+  endpoint: Type.String(),
   region: Type.String({ pattern: "^[a-z0-9-]+$", maxLength: 63 }),
-  accessKey: Type.Optional(Type.String()),
-  secretKey: Type.Optional(Type.String()),
-  bucket: Type.String({ pattern: "^[a-zA-Z0-9-_\\.]+$", maxLength: 63 }),
+  accessKeyId: Type.String(),
+  secretAccessKey: Type.String(),
 });
 export type S3FileProviderConfig = Static<typeof S3FileProviderConfig>;
 
 export class S3FileProvider implements FileProvider<S3FileProviderInstance> {
   name = "s3";
 
-  getInstance({ bucket, ...config }: S3FileProviderConfig) {
-    return new S3FileProviderInstance(config, bucket);
+  getInstance({...config }: S3FileProviderConfig) {
+    return new S3FileProviderInstance(config);
   }
 
   getSchema() {
@@ -41,10 +38,9 @@ export class S3FileProviderInstance implements FileProviderInstance {
   private readonly client;
 
   constructor(
-    config: Omit<S3FileProviderConfig, "bucket">,
-    private readonly bucket: string,
+    config: S3FileProviderConfig,
   ) {
-    this.client = new Client(config);
+    this.client = new S3mini(config);
   }
 
   async upload(
@@ -57,16 +53,13 @@ export class S3FileProviderInstance implements FileProviderInstance {
     const path = `${S3FileProviderInstance.PREFIX}${ref}`;
     const [summary, _] = await Promise.all([
       summarizeFile(dup),
-      this.client.putObject(this.bucket, path, rs, undefined, {
-        "content-disposition": `attachment; filename=${JSON.stringify(pm.filename)}`,
-        "content-type": pm.mime,
-      }),
+      this.client.putAnyObject(path, Readable.toWeb(rs) as ReadableStream, pm.mime),
     ]);
     return { ref, ...summary };
   }
 
   async delete(ref: string): Promise<void> {
-    await this.client.removeObject(this.bucket, ref);
+    await this.client.deleteObject(ref);
   }
 
   async getURL(ref: string): Promise<string> {
@@ -77,7 +70,7 @@ export class S3FileProviderInstance implements FileProviderInstance {
       S3FileProviderInstance.SIGNED_URL_WINDOW *
       Math.floor(iat / S3FileProviderInstance.SIGNED_URL_WINDOW);
     return await this.client.presignedGetObject(
-      this.bucket,
+      'GET',
       path,
       S3FileProviderInstance.SIGNED_URL_WINDOW * 2,
       undefined,
